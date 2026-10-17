@@ -175,10 +175,29 @@ struct E2eLongStateSP @0xa5cd762cd951a455 {
   status @0 :UInt16;
 }
 
-struct CustomReserved6 @0xf98d843bfd7004a3 {
+struct EngineTemperature @0xf98d843bfd7004a3 {
+  oilCelsius @0 :Float32;
+  coolantCelsius @1 :Float32;
+  oilValid @2 :Bool;
+  coolantValid @3 :Bool;
+  supported @4 :Bool;
+  clutch1Celsius @5 :Float32;
+  clutch2Celsius @6 :Float32;
+  clutch1Valid @7 :Bool;
+  clutch2Valid @8 :Bool;
 }
 
-struct CustomReserved7 @0xb86e6369214c01c8 {
+struct EngineTemperatureRequest @0xb86e6369214c01c8 {
+  # boardd maps these to fixed read-only requests; arbitrary CAN data is not accepted.
+  kind @0 :Kind;
+
+  enum Kind {
+    coolant @0;
+    oil @1;
+    flowControl @2;
+    clutch @3;
+    clutchFlowControl @4;
+  }
 }
 
 struct CustomReserved8 @0xf416ec09499d9d19 {
